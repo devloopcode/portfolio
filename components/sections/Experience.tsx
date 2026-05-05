@@ -70,16 +70,18 @@ export default function Experience() {
         </h2>
 
         <div className="relative">
-          {/* Vertical spine */}
+          {/* Vertical spine — outside the stagger wrapper so it's always visible */}
           <div
             aria-hidden="true"
             className="absolute bottom-3 left-[11px] top-3 w-px bg-[var(--border-strong)]"
           />
 
+          {/* data-stagger cascades each timeline row in with 80 ms between them */}
+          <div data-stagger="80">
           {TIMELINE.map((t, i) => (
             <div
               key={i}
-              className="reveal relative grid grid-cols-[24px_1fr] gap-4 py-7 md:grid-cols-[32px_200px_1fr] md:gap-8"
+              className="relative grid grid-cols-[24px_1fr] gap-4 py-7 md:grid-cols-[32px_200px_1fr] md:gap-8"
               style={{
                 borderBottom:
                   i < TIMELINE.length - 1 ? "1px dashed var(--border)" : "none",
@@ -144,6 +146,7 @@ export default function Experience() {
               </div>
             </div>
           ))}
+          </div>{/* end data-stagger */}
         </div>
 
         <div className="reveal mt-10">

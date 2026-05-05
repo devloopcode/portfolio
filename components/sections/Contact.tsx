@@ -132,10 +132,11 @@ export default function Contact() {
         </div>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 items-start gap-12 min-[900px]:grid-cols-2 min-[900px]:gap-20">
+        {/* data-stagger: left column (copy + links) then the form */}
+        <div data-stagger="130" className="grid grid-cols-1 items-start gap-12 min-[900px]:grid-cols-2 min-[900px]:gap-20">
 
           {/* ── Left column: copy + links ──────────────────────── */}
-          <div className="reveal">
+          <div>
             <h2 className="mb-6 font-[var(--font-heading)] text-3xl font-medium leading-tight tracking-tight md:text-[2.6rem]">
               Got a{" "}
               <em
@@ -185,7 +186,7 @@ export default function Contact() {
           {/* ── Right column: contact form ─────────────────────── */}
           <form
             onSubmit={submit}
-            className="reveal grid gap-5 rounded-[6px] border border-[var(--border)] bg-[var(--bg-elev)] p-8"
+            className="grid gap-5 rounded-[6px] border border-[var(--border)] bg-[var(--bg-elev)] p-8"
           >
             {/* Form header */}
             <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.05em] text-[var(--fg-mute)]">

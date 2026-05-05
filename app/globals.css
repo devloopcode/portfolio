@@ -102,11 +102,33 @@ body {
 }
 
 /* Stagger siblings inside a revealed container */
-.reveal.is-visible > *:nth-child(1) { transition-delay:   0ms; }
-.reveal.is-visible > *:nth-child(2) { transition-delay:  80ms; }
-.reveal.is-visible > *:nth-child(3) { transition-delay: 160ms; }
-.reveal.is-visible > *:nth-child(4) { transition-delay: 240ms; }
-.reveal.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+.reveal.is-visible > *:nth-child(1)  { transition-delay:   0ms; }
+.reveal.is-visible > *:nth-child(2)  { transition-delay:  80ms; }
+.reveal.is-visible > *:nth-child(3)  { transition-delay: 160ms; }
+.reveal.is-visible > *:nth-child(4)  { transition-delay: 240ms; }
+.reveal.is-visible > *:nth-child(5)  { transition-delay: 320ms; }
+.reveal.is-visible > *:nth-child(6)  { transition-delay: 400ms; }
+.reveal.is-visible > *:nth-child(7)  { transition-delay: 480ms; }
+.reveal.is-visible > *:nth-child(8)  { transition-delay: 560ms; }
+.reveal.is-visible > *:nth-child(9)  { transition-delay: 640ms; }
+.reveal.is-visible > *:nth-child(10) { transition-delay: 720ms; }
+
+/* ── Stagger groups — JS-driven ────────────────────────────── */
+/* [data-stagger] containers are observed by AppShell.          */
+/* When the container enters the viewport, JS adds .is-visible  */
+/* to each direct child with an incrementing transitionDelay.   */
+/* The attribute value controls the step in ms (default 75).    */
+[data-stagger] > * {
+  opacity:   0;
+  transform: translateY(18px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-stagger] > *.is-visible {
+  opacity:   1;
+  transform: translateY(0);
+}
 
 /* ── Animations ────────────────────────────────────────────── */
 @keyframes dotPulse {
@@ -238,6 +260,13 @@ body[data-cursor="false"] #cursorRing {
     opacity:    1;
     transform:  none;
     transition: none;
+  }
+
+  /* Stagger children are also immediately visible under reduced motion */
+  [data-stagger] > * {
+    opacity:    1 !important;
+    transform:  none !important;
+    transition: none !important;
   }
 }
 

@@ -26,10 +26,11 @@ export default function About() {
         </div>
 
         {/* Two-column grid: photo+facts | bio+stats */}
-        <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
+        {/* data-stagger staggers left column then right column */}
+        <div data-stagger="150" className="grid grid-cols-1 items-start gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
 
           {/* ── Left column ──────────────────────────────────── */}
-          <div className="reveal">
+          <div>
 
             {/* Photo placeholder */}
             <div
@@ -75,7 +76,7 @@ export default function About() {
           </div>
 
           {/* ── Right column ─────────────────────────────────── */}
-          <div className="reveal">
+          <div>
 
             {/* Section heading */}
             <h2 className="mb-8 font-[var(--font-heading)] text-3xl font-medium leading-tight tracking-tight md:text-[2.6rem]">

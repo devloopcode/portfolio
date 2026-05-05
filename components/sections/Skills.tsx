@@ -53,7 +53,9 @@ export default function Skills() {
           the hairline-border illusion between cards without any border on the cards.
           Columns: 1 on mobile → 2 from sm → 3 from 900px.
         */}
+        {/* data-stagger cascades each card in with 90 ms between them */}
         <div
+          data-stagger="90"
           className={[
             "grid gap-px",
             "bg-[var(--border)] border border-[var(--border)]",
@@ -64,7 +66,7 @@ export default function Skills() {
             <div
               key={group.label}
               className={[
-                "reveal flex min-h-[240px] flex-col gap-4",
+                "flex min-h-[240px] flex-col gap-4",
                 "bg-[var(--bg)] px-7 py-8",
               ].join(" ")}
             >
