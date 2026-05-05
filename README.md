@@ -44,3 +44,10 @@ The easiest way to deploy this project is to use the [Vercel Platform](https://v
 ## 📄 License
 
 This project is open-source and available under the [MIT License](LICENSE).
+
+
+<!-- !important 
+
+One thing to update before going live: replace https://idbenouakrim.dev in layout.tsx, robots.ts, and sitemap.ts with your actual
+  ▎  domain.
+ -->
