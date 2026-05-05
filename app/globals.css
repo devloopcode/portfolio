@@ -1,26 +1,274 @@
 @import "tailwindcss";
 
+/* ── Design tokens ─────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background:    #ffffff;
+  --foreground:    #171717;
+  --muted:         #71717a;
+  --border:        rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+
+  /* Elevated surface fills (used for photo placeholder stripe) */
+  --bg-elev:   #f4f4f5;
+  --bg-elev-2: #e4e4e7;
+
+  /* Semantic aliases */
+  --bg:      var(--background);
+  --fg:      var(--foreground);
+  --fg-mute: #a1a1aa;
+  --fg-dim:  #52525b;
+  --accent:      oklch(0.82 0.16 80);
+  --accent-soft: oklch(0.82 0.16 80 / 0.12);
+
+  /* Typography */
+  --font-heading: var(--font-geist-sans), system-ui, sans-serif;
+  --font-serif:   Georgia, "Times New Roman", ui-serif, serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans:        var(--font-geist-sans);
+  --font-mono:        var(--font-geist-mono);
+
+  /* Expose scroll-pulse animation to Tailwind */
+  --animate-scroll-pulse: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ── Theme via data-theme on <body> ────────────────────────── */
+body[data-theme="light"],
+:root {
+  --background:    #ffffff;
+  --foreground:    #171717;
+  --muted:         #71717a;
+  --border:        rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --bg-elev:       #f4f4f5;
+  --bg-elev-2:     #e4e4e7;
+  --bg:            #ffffff;
+  --fg:            #171717;
+  --fg-mute:       #a1a1aa;
+  --fg-dim:        #52525b;
+}
+
+body[data-theme="dark"] {
+  --background:    #09090b;
+  --foreground:    #fafafa;
+  --muted:         #71717a;
+  --border:        rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --bg-elev:       #18181b;
+  --bg-elev-2:     #27272a;
+  --bg:            #09090b;
+  --fg:            #fafafa;
+  --fg-mute:       #52525b;
+  --fg-dim:        #a1a1aa;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background:    #09090b;
+    --foreground:    #fafafa;
+    --border:        rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --bg-elev:       #18181b;
+    --bg-elev-2:     #27272a;
+    --bg:            #09090b;
+    --fg:            #fafafa;
+    --fg-mute:       #52525b;
+    --fg-dim:        #a1a1aa;
   }
 }
 
+/* ── Base ──────────────────────────────────────────────────── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:  var(--background);
+  color:       var(--foreground);
+  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  transition:  background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Scroll-reveal ─────────────────────────────────────────── */
+.reveal {
+  opacity:   0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity:   1;
+  transform: translateY(0);
+}
+
+/* Stagger siblings inside a revealed container */
+.reveal.is-visible > *:nth-child(1) { transition-delay:   0ms; }
+.reveal.is-visible > *:nth-child(2) { transition-delay:  80ms; }
+.reveal.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+.reveal.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+.reveal.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+
+/* ── Animations ────────────────────────────────────────────── */
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.3; }
+  40%            { opacity: 1;   }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1);   }
+  50%       { opacity: 1;   transform: scaleY(1.3); }
+}
+
+/* ── Accent variants (data-accent on <body>) ───────────────── */
+/* Each swatch re-points --accent and --accent-soft so every    */
+/* component that reads those variables updates automatically.  */
+body[data-accent="amber"] {
+  --accent:      oklch(0.82 0.16 80);
+  --accent-soft: oklch(0.82 0.16 80  / 0.12);
+}
+body[data-accent="lime"] {
+  --accent:      oklch(0.86 0.18 130);
+  --accent-soft: oklch(0.86 0.18 130 / 0.12);
+}
+body[data-accent="cyan"] {
+  --accent:      oklch(0.82 0.13 210);
+  --accent-soft: oklch(0.82 0.13 210 / 0.12);
+}
+body[data-accent="violet"] {
+  --accent:      oklch(0.78 0.16 295);
+  --accent-soft: oklch(0.78 0.16 295 / 0.12);
+}
+body[data-accent="coral"] {
+  --accent:      oklch(0.78 0.17 25);
+  --accent-soft: oklch(0.78 0.17 25  / 0.12);
+}
+
+/* ── Heading-font variants (data-heading-font on <body>) ───── */
+body[data-heading-font="geist"] {
+  --font-heading: var(--font-geist-sans), system-ui, sans-serif;
+}
+body[data-heading-font="serif"] {
+  --font-heading: Georgia, "Times New Roman", ui-serif, serif;
+}
+body[data-heading-font="inter"] {
+  --font-heading: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* ── Custom cursor ─────────────────────────────────────────── */
+/* Dot: snaps instantly to the mouse */
+#cursorDot {
+  width:         6px;
+  height:        6px;
+  background:    var(--accent);
+  border-radius: 50%;
+}
+
+/* Ring: lerps behind with JS; transitions handle state morphing */
+#cursorRing {
+  width:         32px;
+  height:        32px;
+  border:        1.5px solid var(--fg-mute);
+  border-radius: 50%;
+  transition:
+    width         0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    height        0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color  0.22s ease,
+    border-radius 0.22s ease,
+    opacity       0.2s  ease;
+}
+
+/* Hover state — expands and adopts accent colour */
+#cursorRing.is-hover {
+  width:        48px;
+  height:       48px;
+  border-color: var(--accent);
+  opacity:      0.75;
+}
+
+/* Text-beam state — thin vertical bar like a native text cursor */
+#cursorRing.is-text {
+  width:         2px;
+  height:        22px;
+  border-radius: 2px;
+  border-color:  var(--fg);
+  opacity:       0.8;
+}
+
+/* Hide system cursor while custom one is active */
+body[data-cursor="true"],
+body[data-cursor="true"] * {
+  cursor: none !important;
+}
+
+/* Disable custom cursor when toggled off in Tweaks */
+body[data-cursor="false"] #cursorDot,
+body[data-cursor="false"] #cursorRing {
+  opacity: 0;
+}
+
+/* Touch / no-hover devices — never show the custom cursor */
+@media (hover: none) {
+  #cursorDot, #cursorRing { display: none; }
+}
+
+/* ── Focus visible — keyboard-only focus ring ──────────────── */
+:focus-visible {
+  outline:        2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius:  4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Reduced motion — disable all transitions & animations ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+
+  /* Make reveal elements immediately visible — JS also handles this */
+  .reveal {
+    opacity:    1;
+    transform:  none;
+    transition: none;
+  }
+}
+
+/* ── Range input — minimal cross-browser reset ─────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--border-strong);
+  border-radius: 2px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: -4px;
+  transition: transform 0.15s;
+}
+input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.2); }
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: var(--border-strong);
+  border-radius: 2px;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px; height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
 }
