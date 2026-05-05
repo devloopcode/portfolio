@@ -8,7 +8,7 @@ import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
-import PortfolioTweaks, { TWEAK_DEFAULTS } from "@/components/PortfolioTweaks";
+import { TWEAK_DEFAULTS } from "@/components/PortfolioTweaks";
 import CustomCursor from "@/components/CustomCursor";
 
 export default function AppShell() {
@@ -67,7 +67,6 @@ export default function AppShell() {
         <Experience />
         <Contact />
       </main>
-      <PortfolioTweaks />
       <CustomCursor />
     </>
   );
