@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://idbenouakrim.dev";
+const SITE_URL = "https://portfolio-three-liard-sawz2jnsjs.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
