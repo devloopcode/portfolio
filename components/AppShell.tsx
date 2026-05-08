@@ -10,6 +10,7 @@ import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
 import { TWEAK_DEFAULTS } from "@/components/PortfolioTweaks";
 import CustomCursor from "@/components/CustomCursor";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function AppShell() {
   // Seeded from TWEAK_DEFAULTS; updated live via postMessage from PortfolioTweaks
@@ -100,6 +101,7 @@ export default function AppShell() {
         <Contact />
       </main>
       <CustomCursor />
+      <ScrollToTop />
     </>
   );
 }

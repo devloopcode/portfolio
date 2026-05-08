@@ -270,6 +270,71 @@ body[data-cursor="false"] #cursorRing {
   }
 }
 
+/* ── Scroll-to-top button ────────────────────────────────────── */
+.scroll-top-btn {
+  position:      fixed;
+  bottom:        5.5rem;
+  right:         1rem;
+  z-index:       50;
+  width:         44px;
+  height:        44px;
+  border-radius: 50%;
+  border:        1.5px solid var(--border-strong);
+  background:    var(--bg);
+  color:         var(--fg-dim);
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  cursor:        pointer;
+  outline:       none;
+
+  /* hidden / entry state */
+  opacity:        0;
+  transform:      translateY(14px) scale(0.75);
+  pointer-events: none;
+
+  transition:
+    opacity      0.5s  cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform    0.5s  cubic-bezier(0.34, 1.56, 0.64, 1),
+    background   0.22s ease,
+    border-color 0.22s ease,
+    color        0.22s ease,
+    box-shadow   0.22s ease;
+}
+
+.scroll-top-btn--visible {
+  opacity:        1;
+  transform:      translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+  background:   var(--accent);
+  border-color: var(--accent);
+  color:        var(--bg);
+  box-shadow:   0 0 0 5px var(--accent-soft), 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.scroll-top-btn:hover .scroll-top-icon {
+  animation: scrollTopArrowBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+.scroll-top-btn--click {
+  animation: scrollTopClick 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes scrollTopArrowBounce {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-4px); }
+}
+
+@keyframes scrollTopClick {
+  0%   { transform: scale(1);    }
+  35%  { transform: scale(0.82); }
+  70%  { transform: scale(1.1);  }
+  100% { transform: scale(1);    }
+}
+
 /* ── Range input — minimal cross-browser reset ─────────────── */
 input[type="range"] {
   -webkit-appearance: none;
