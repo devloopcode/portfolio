@@ -27,7 +27,7 @@ export default function About() {
 
         {/* Two-column grid: photo+facts | bio+stats */}
         {/* data-stagger staggers left column then right column */}
-        <div data-stagger="150" className="grid grid-cols-1 items-start gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
+        <div data-stagger="220" className="grid grid-cols-1 items-start gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
 
           {/* ── Left column ──────────────────────────────────── */}
           <div>

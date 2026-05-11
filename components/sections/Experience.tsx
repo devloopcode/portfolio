@@ -77,7 +77,7 @@ export default function Experience() {
           />
 
           {/* data-stagger cascades each timeline row in with 80 ms between them */}
-          <div data-stagger="80">
+          <div data-stagger="130">
           {TIMELINE.map((t, i) => (
             <div
               key={i}

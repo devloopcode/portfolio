@@ -55,7 +55,7 @@ export default function Skills() {
         */}
         {/* data-stagger cascades each card in with 90 ms between them */}
         <div
-          data-stagger="90"
+          data-stagger="140"
           className={[
             "grid gap-px",
             "bg-[var(--border)] border border-[var(--border)]",

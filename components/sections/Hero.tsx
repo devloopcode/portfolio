@@ -219,7 +219,7 @@ export default function Hero({ density }: HeroProps) {
 
       {/* ── Content ──────────────────────────────────────────── */}
       {/* data-stagger staggers the 3 children: meta → h1 → CTA row */}
-      <div data-stagger="130" className="relative z-2 mx-auto w-full max-w-6xl px-6 md:px-10">
+      <div data-stagger="200" className="relative z-2 mx-auto w-full max-w-6xl px-6 md:px-10">
 
         {/* Meta row — availability status + local time */}
         <div

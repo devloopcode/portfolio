@@ -133,7 +133,7 @@ export default function Contact() {
 
         {/* Two-column layout */}
         {/* data-stagger: left column (copy + links) then the form */}
-        <div data-stagger="130" className="grid grid-cols-1 items-start gap-12 min-[900px]:grid-cols-2 min-[900px]:gap-20">
+        <div data-stagger="200" className="grid grid-cols-1 items-start gap-12 min-[900px]:grid-cols-2 min-[900px]:gap-20">
 
           {/* ── Left column: copy + links ──────────────────────── */}
           <div>

@@ -53,7 +53,7 @@ export default function AppShell() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px 40px 0px" }
     );
     document.querySelectorAll(".reveal").forEach((el) => revealObs.observe(el));
 
@@ -76,7 +76,7 @@ export default function AppShell() {
         });
       },
       // Lower threshold so the animation starts as soon as the container peeks in
-      { threshold: 0.08, rootMargin: "0px 0px -30px 0px" }
+      { threshold: 0.04, rootMargin: "0px 0px 40px 0px" }
     );
     document.querySelectorAll<HTMLElement>("[data-stagger]").forEach((el) =>
       staggerObs.observe(el)
