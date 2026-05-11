@@ -11,6 +11,7 @@ import Contact from "@/components/sections/Contact";
 import { TWEAK_DEFAULTS } from "@/components/PortfolioTweaks";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollToTop from "@/components/ScrollToTop";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function AppShell() {
   // Seeded from TWEAK_DEFAULTS; updated live via postMessage from PortfolioTweaks
@@ -91,6 +92,7 @@ export default function AppShell() {
 
   return (
     <>
+      <LoadingScreen />
       <Nav />
       <main id="main-content">
         <Hero density={density} />
