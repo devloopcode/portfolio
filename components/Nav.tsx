@@ -84,6 +84,7 @@ function MenuToggle({ isOpen }: { isOpen: boolean }) {
 // ── Nav ──────────────────────────────────────────────────────────────────────
 export default function Nav() {
   const [scrolled,      setScrolled]      = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [theme,         setTheme]         = useState<Theme>("dark");
   const [menuOpen,      setMenuOpen]      = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -98,9 +99,13 @@ export default function Nav() {
     setTheme((document.body.dataset.theme as Theme) || "dark");
   }, []);
 
-  // Sticky nav background once user scrolls past 20px
+  // Sticky nav background + scroll progress
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -268,6 +273,14 @@ export default function Nav() {
           navBg,
         ].join(" ")}
       >
+        {/* Scroll progress bar */}
+        <div className="absolute inset-x-0 top-0 h-[2px] overflow-hidden">
+          <div
+            className="h-full transition-[width] duration-100 ease-out"
+            style={{ width: `${scrollProgress}%`, background: "var(--accent)", boxShadow: "0 0 12px 4px var(--accent), 0 0 24px 8px var(--accent)" }}
+          />
+        </div>
+
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10">
 
           {/* Logo */}
