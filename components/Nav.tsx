@@ -206,47 +206,57 @@ export default function Nav() {
   // ── Derived style classes ─────────────────────────────────────────────────
   const isDark = theme === "dark";
 
-  const navBg = scrolled
+  const navGlassStyle = scrolled
     ? isDark
-      ? "bg-zinc-950/80 backdrop-blur-md shadow-[0_1px_0_0_rgba(255,255,255,0.06)]"
-      : "bg-white/80    backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.06)]"
-    : "bg-transparent";
+      ? {
+          backdropFilter: "blur(44px) saturate(1.8)",
+          WebkitBackdropFilter: "blur(44px) saturate(1.8)",
+          background: "linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04))",
+          border: "1px solid rgba(255,255,255,0.13)",
+          boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.2), 0 16px 40px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.2)",
+        }
+      : {
+          backdropFilter: "blur(44px) saturate(1.6)",
+          WebkitBackdropFilter: "blur(44px) saturate(1.6)",
+          background: "rgba(255,255,255,0.78)",
+          border: "1px solid rgba(0,0,0,0.08)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 32px rgba(0,0,0,0.08)",
+        }
+    : {};
 
   const logoMarkCls = isDark
-    ? "bg-white text-zinc-950"
+    ? "bg-white/10 text-white border border-white/15 backdrop-blur-sm"
     : "bg-zinc-950 text-white";
 
   const iconBtnCls = isDark
-    ? "text-zinc-500 hover:text-zinc-100 hover:bg-white/8"
+    ? "text-white/50 hover:text-white hover:bg-white/10"
     : "text-zinc-500 hover:text-zinc-900 hover:bg-black/8";
 
   const ctaCls = isDark
-    ? "border-white/15 text-zinc-100 hover:bg-white hover:text-zinc-950"
+    ? "border-white/15 text-white hover:bg-white hover:text-zinc-950"
     : "border-zinc-900/15 text-zinc-900 hover:bg-zinc-950 hover:text-white";
 
-  // Desktop link — underline animation, active colour
   function linkCls(sectionId: string) {
     const isActive    = activeSection === sectionId;
-    const activeColor = isDark ? "text-zinc-100"  : "text-zinc-900";
-    const idleColor   = isDark ? "text-zinc-500"  : "text-zinc-500";
+    const activeColor = isDark ? "text-white"      : "text-zinc-900";
+    const idleColor   = isDark ? "text-white/45"   : "text-zinc-500";
     return [
       "group relative flex items-center gap-1.5 text-sm font-medium",
       "transition-colors duration-200",
       isActive ? activeColor : idleColor,
-      isDark ? "hover:text-zinc-100" : "hover:text-zinc-900",
+      isDark ? "hover:text-white" : "hover:text-zinc-900",
     ].join(" ");
   }
 
-  // Mobile drawer link — filled pill when active
   function mobileLinkCls(sectionId: string) {
     const isActive = activeSection === sectionId;
     const base = "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-150";
-    if (isDark) return `${base} ${isActive ? "bg-white/8 text-zinc-100" : "text-zinc-400 hover:bg-white/5 hover:text-zinc-100"}`;
+    if (isDark) return `${base} ${isActive ? "bg-white/10 text-white" : "text-white/45 hover:bg-white/6 hover:text-white"}`;
     return           `${base} ${isActive ? "bg-black/6 text-zinc-900"  : "text-zinc-500 hover:bg-black/4 hover:text-zinc-900"}`;
   }
 
   const numCls = isDark
-    ? "font-mono text-[10px] text-zinc-600"
+    ? "font-mono text-[10px] text-white/25"
     : "font-mono text-[10px] text-zinc-400";
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -267,21 +277,18 @@ export default function Nav() {
       />
 
       {/* ── Top nav bar ──────────────────────────────────────────────────── */}
-      <nav
-        className={[
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          navBg,
-        ].join(" ")}
-      >
-        {/* Scroll progress bar */}
-        <div className="absolute inset-x-0 top-0 h-[2px] overflow-hidden">
-          <div
-            className="h-full transition-[width] duration-100 ease-out"
-            style={{ width: `${scrollProgress}%`, background: "var(--accent)", boxShadow: "0 0 12px 4px var(--accent), 0 0 24px 8px var(--accent)" }}
-          />
-        </div>
-
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10">
+      <nav className="fixed inset-x-0 top-0 z-50 pointer-events-none flex justify-center px-4 pt-3">
+        <div
+          className="pointer-events-auto flex w-full max-w-[900px] items-center justify-between rounded-2xl px-5 py-3 transition-all duration-300"
+          style={navGlassStyle}
+        >
+          {/* Scroll progress bar */}
+          <div className="absolute inset-x-6 bottom-0 h-[2px] overflow-hidden rounded-full" style={{ opacity: scrolled ? 1 : 0 }}>
+            <div
+              className="h-full rounded-full transition-[width] duration-100 ease-out"
+              style={{ width: `${scrollProgress}%`, background: "var(--accent)", boxShadow: "0 0 8px 2px var(--accent)" }}
+            />
+          </div>
 
           {/* Logo */}
           <a
@@ -295,7 +302,7 @@ export default function Nav() {
             ].join(" ")}>
               M
             </span>
-            <span className={`hidden sm:block ${isDark ? "text-zinc-100" : "text-zinc-900"}`}>
+            <span className={`hidden sm:block ${isDark ? "text-white/90" : "text-zinc-900"}`}>
               Mohamed Idbenouakrim
             </span>
           </a>
@@ -383,14 +390,20 @@ export default function Nav() {
         id="mobile-menu"
         aria-label="Navigation menu"
         aria-hidden={!menuOpen}
+        style={isDark ? {
+          backdropFilter: "blur(56px) saturate(1.8)",
+          WebkitBackdropFilter: "blur(56px) saturate(1.8)",
+          background: "linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05))",
+          borderLeft: "1px solid rgba(255,255,255,0.12)",
+        } : {
+          backdropFilter: "blur(56px) saturate(1.6)",
+          WebkitBackdropFilter: "blur(56px) saturate(1.6)",
+          background: "rgba(255,255,255,0.82)",
+          borderLeft: "1px solid rgba(0,0,0,0.08)",
+        }}
         className={[
           "fixed top-0 right-0 z-[60] h-full w-[300px] md:hidden",
           "flex flex-col",
-          // Drawer surface
-          isDark
-            ? "bg-zinc-950 border-l border-white/8"
-            : "bg-white    border-l border-black/6",
-          // Slide animation — cubic-bezier mimics a spring for the open stroke
           "transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
           menuOpen ? "translate-x-0" : "translate-x-full",
         ].join(" ")}
@@ -398,7 +411,7 @@ export default function Nav() {
         {/* ── Drawer header ──────────────────────────────────────────── */}
         <div className={[
           "flex items-center justify-between px-5 py-4",
-          isDark ? "border-b border-white/8" : "border-b border-black/6",
+          isDark ? "border-b border-white/10" : "border-b border-black/6",
         ].join(" ")}>
 
           {/* Mini logo */}
@@ -460,7 +473,7 @@ export default function Nav() {
         {/* ── Drawer footer — CTA ────────────────────────────────────── */}
         <div className={[
           "px-3 pb-8 pt-4",
-          isDark ? "border-t border-white/8" : "border-t border-black/6",
+          isDark ? "border-t border-white/10" : "border-t border-black/6",
         ].join(" ")}>
           <a
             href="#contact"

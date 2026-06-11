@@ -73,7 +73,8 @@ export default function Experience() {
           {/* Vertical spine — outside the stagger wrapper so it's always visible */}
           <div
             aria-hidden="true"
-            className="absolute bottom-3 left-[11px] top-3 w-px bg-[var(--border-strong)]"
+            className="absolute bottom-0 left-[22px] top-0 w-px"
+            style={{ background: "rgba(255,255,255,0.08)" }}
           />
 
           {/* data-stagger cascades each timeline row in with 80 ms between them */}
@@ -81,11 +82,7 @@ export default function Experience() {
           {TIMELINE.map((t, i) => (
             <div
               key={i}
-              className="relative grid grid-cols-[24px_1fr] gap-4 py-7 md:grid-cols-[32px_200px_1fr] md:gap-8"
-              style={{
-                borderBottom:
-                  i < TIMELINE.length - 1 ? "1px dashed var(--border)" : "none",
-              }}
+              className="glass relative grid grid-cols-[24px_1fr] gap-4 rounded-2xl px-5 py-6 mb-3 md:grid-cols-[32px_200px_1fr] md:gap-8"
             >
               {/* Dot */}
               <div className="relative z-10">
@@ -153,7 +150,7 @@ export default function Experience() {
           <a
             href="/pdf/IDBENOUAKRIM_Mohamed.pdf"
             download="IDBENOUAKRIM_Mohamed.pdf"
-            className="inline-flex items-center gap-2 rounded border border-[var(--border-strong)] px-5 py-2.5 font-mono text-[13px] text-[var(--fg-dim)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            className="glass inline-flex items-center gap-2 rounded-xl px-5 py-2.5 font-mono text-[13px] text-[var(--fg-dim)] transition-all hover:text-[var(--accent)]"
           >
             Download CV (PDF)
             <svg

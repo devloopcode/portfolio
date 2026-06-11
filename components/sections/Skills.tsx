@@ -27,7 +27,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="border-y border-[var(--border)] bg-[var(--bg-elev)] py-32"
+      className="py-32"
     >
       <div className="mx-auto max-w-6xl px-6 md:px-10">
 
@@ -56,19 +56,12 @@ export default function Skills() {
         {/* data-stagger cascades each card in with 90 ms between them */}
         <div
           data-stagger="140"
-          className={[
-            "grid gap-px",
-            "bg-[var(--border)] border border-[var(--border)]",
-            "grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-3",
-          ].join(" ")}
+          className="grid gap-4 grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-3"
         >
           {SKILL_GROUPS.map((group, i) => (
             <div
               key={group.label}
-              className={[
-                "flex min-h-[240px] flex-col gap-4",
-                "bg-[var(--bg)] px-7 py-8",
-              ].join(" ")}
+              className="glass flex min-h-[240px] flex-col gap-4 rounded-2xl px-7 py-8"
             >
               {/* Card header — index + accent dot */}
               <div className="flex items-center justify-between">
@@ -92,9 +85,10 @@ export default function Skills() {
                   <li
                     key={item}
                     className={[
-                      "cursor-default rounded-[4px] border px-2.5 py-1.5",
+                      "cursor-default rounded-lg border px-2.5 py-1.5",
                       "font-mono text-[11px]",
-                      "border-[var(--border-strong)] text-[var(--fg-dim)]",
+                      "border-white/10 text-[var(--fg-dim)]",
+                      "bg-white/5",
                       "transition-all duration-200",
                       "hover:border-[var(--accent)] hover:bg-[var(--accent-soft)] hover:text-[var(--accent)]",
                     ].join(" ")}
@@ -108,7 +102,7 @@ export default function Skills() {
         </div>
 
         {/* Currently learning footer */}
-        <div className="reveal mt-8 flex flex-wrap items-center justify-between gap-4 rounded-[6px] border border-dashed border-[var(--border-strong)] px-7 py-6">
+        <div className="reveal mt-4 glass flex flex-wrap items-center justify-between gap-4 rounded-2xl px-7 py-5">
           {/* <p className="font-mono text-[13px] text-[var(--fg-dim)]">
             <span className="text-[var(--accent)]">{">"}</span>{" "}
             Currently learning:{" "}

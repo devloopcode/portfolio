@@ -154,11 +154,22 @@ function ModalBase({
         exit={{ opacity: 0, y: 16, scale: 0.98 }}
         transition={{ duration: 0.35, ease }}
         className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-t-2xl md:rounded-2xl"
-        style={{ background: "var(--background)", border: "1px solid var(--border-strong)" }}
+        style={{
+          backdropFilter: "blur(56px) saturate(1.8)",
+          WebkitBackdropFilter: "blur(56px) saturate(1.8)",
+          background: "linear-gradient(160deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.05) 100%)",
+          border: "1px solid rgba(255,255,255,0.14)",
+          boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.22), 0 32px 80px rgba(0,0,0,0.55)",
+        }}
       >
         <div
           className="sticky top-0 z-10 flex items-center justify-between px-7 py-5"
-          style={{ borderBottom: "1px solid var(--border)", background: "var(--background)" }}
+          style={{
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            backdropFilter: "blur(56px)",
+            WebkitBackdropFilter: "blur(56px)",
+            background: "rgba(255,255,255,0.06)",
+          }}
         >
           <div>
             <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--fg-mute)]">{subtitle}</span>
@@ -207,12 +218,18 @@ function ProjectCard({
         transition={{ duration: 0.7, ease }}
         whileHover={{ y: -3, transition: { duration: 0.3, ease } }}
         className="project-card overflow-hidden rounded-2xl"
-        style={{ border: "1px solid var(--border-strong)", background: "var(--bg-elev)" }}
+        style={{
+          backdropFilter: "blur(48px) saturate(1.8)",
+          WebkitBackdropFilter: "blur(48px) saturate(1.8)",
+          background: "linear-gradient(150deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.05) 100%)",
+          border: "1px solid rgba(255,255,255,0.13)",
+          boxShadow: "inset 0 1.5px 0 rgba(255,255,255,0.20), 0 24px 64px rgba(0,0,0,0.38), 0 8px 20px rgba(0,0,0,0.22)",
+        }}
       >
         {/* Terminal header */}
         <div
           className="flex items-center justify-between px-5 py-3.5"
-          style={{ borderBottom: "1px solid var(--border)", background: "var(--bg-elev-2)" }}
+          style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.04)" }}
         >
           <div className="flex items-center gap-1.5">
             <span className="h-3 w-3 rounded-full" style={{ background: "#ef4444" }} />
@@ -285,7 +302,7 @@ function ProjectCard({
                     key={f.label}
                     variants={STAGGER_ITEM}
                     className="feature-item rounded-lg p-3"
-                    style={{ border: "1px solid var(--border)", background: "var(--background)" }}
+                    style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.04)" }}
                   >
                     <div className="mb-1 flex items-center gap-1.5">
                       <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
@@ -331,7 +348,7 @@ function ProjectCard({
             variants={BOX_ITEM}
             whileHover={{ y: -2, transition: { duration: 0.25, ease } }}
             className="highlight-card rounded-xl p-5"
-            style={{ border: "1px solid var(--border)", background: "var(--background)" }}
+            style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
           >
             <div className="mb-4">
               <span

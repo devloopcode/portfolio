@@ -34,19 +34,27 @@ export default function About() {
 
             {/* Photo placeholder */}
             <div
-              className="relative aspect-[4/5] overflow-hidden rounded-[4px] border border-[var(--border)]"
+              className="glass relative aspect-[4/5] overflow-hidden rounded-2xl"
               style={{
                 background:
-                  "repeating-linear-gradient(45deg, var(--bg-elev) 0 14px, var(--bg-elev-2) 14px 28px)",
+                  "linear-gradient(160deg, rgba(100,50,255,0.15) 0%, rgba(0,170,220,0.10) 100%)",
               }}
             >
-              {/* Fade-to-bg overlay so the bottom text reads cleanly */}
+              {/* Specular top edge */}
+              <div
+                aria-hidden="true"
+                className="absolute left-6 right-6 top-[1px] h-px"
+                style={{
+                  background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent)",
+                }}
+              />
+              {/* Fade-to-bg overlay */}
               <div
                 aria-hidden="true"
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--bg) 80%, transparent) 100%)",
+                    "linear-gradient(180deg, transparent 40%, rgba(6,5,14,0.7) 100%)",
                 }}
               />
 
@@ -62,11 +70,11 @@ export default function About() {
             </div>
 
             {/* Quick-facts table */}
-            <dl className="mt-6 grid gap-3 font-mono text-[12px]">
+            <dl className="glass mt-6 grid gap-0 rounded-2xl overflow-hidden font-mono text-[12px]">
               {FACTS.map(([key, value]) => (
                 <div
                   key={key}
-                  className="flex justify-between border-b border-dashed border-[var(--border)] pb-2.5"
+                  className="flex justify-between border-b border-white/8 px-5 py-3 last:border-b-0"
                 >
                   <dt className="uppercase tracking-[0.05em] text-[var(--fg-mute)]">{key}</dt>
                   <dd className="text-[var(--fg)]">{value}</dd>
@@ -110,11 +118,11 @@ export default function About() {
             </div>
 
             {/* Stats row */}
-            <div className="mt-12 grid grid-cols-3 gap-6">
+            <div className="mt-12 grid grid-cols-3 gap-3">
               {STATS.map(([number, label]) => (
                 <div
                   key={label}
-                  className="border-t border-[var(--border-strong)] pt-4"
+                  className="glass rounded-2xl px-4 py-5"
                 >
                   <div className="font-[var(--font-heading)] text-[36px] font-medium leading-none tracking-[-0.02em] text-[var(--fg)]">
                     {number}

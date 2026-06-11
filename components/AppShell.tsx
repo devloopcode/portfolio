@@ -92,9 +92,31 @@ export default function AppShell() {
 
   return (
     <>
+      {/* Fixed ambient light blobs — visible through glass panels */}
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div style={{
+          position: "absolute", top: "-5%", left: "-10%",
+          width: "65vw", height: "65vw",
+          background: "radial-gradient(circle, rgba(100,50,255,0.22) 0%, transparent 65%)",
+          filter: "blur(100px)",
+        }} />
+        <div style={{
+          position: "absolute", bottom: "5%", right: "-5%",
+          width: "55vw", height: "55vw",
+          background: "radial-gradient(circle, rgba(0,170,220,0.18) 0%, transparent 65%)",
+          filter: "blur(120px)",
+        }} />
+        <div style={{
+          position: "absolute", top: "45%", left: "30%",
+          width: "45vw", height: "45vw",
+          background: "radial-gradient(circle, rgba(60,50,200,0.14) 0%, transparent 70%)",
+          filter: "blur(90px)",
+        }} />
+      </div>
+
       <LoadingScreen />
       <Nav />
-      <main id="main-content">
+      <main id="main-content" className="relative z-[1]">
         <Hero density={density} />
         <About />
         <Projects />

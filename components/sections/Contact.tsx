@@ -35,13 +35,10 @@ const CONTACT_LINKS = [
 // ── Shared input / textarea class string ──────────────────────────────────────
 // Defined once so both <input> and <textarea> stay visually identical.
 const INPUT_CLS = [
-  "w-full rounded-[4px]",
-  "border border-[var(--border-strong)]",
-  "bg-[var(--bg)] px-4 py-[14px]",
+  "glass-input w-full rounded-xl",
+  "px-4 py-[14px]",
   "font-sans text-[15px] text-[var(--fg)]",
-  "placeholder:text-[var(--fg-mute)]",
-  "transition-colors duration-200",
-  "focus:border-[var(--accent)] focus:bg-[var(--bg-elev-2)] focus:outline-none",
+  "transition-all duration-200",
 ].join(" ");
 
 // ── Field wrapper ─────────────────────────────────────────────────────────────
@@ -186,7 +183,7 @@ export default function Contact() {
           {/* ── Right column: contact form ─────────────────────── */}
           <form
             onSubmit={submit}
-            className="grid gap-5 rounded-[6px] border border-[var(--border)] bg-[var(--bg-elev)] p-8"
+            className="glass grid gap-5 rounded-2xl p-8"
           >
             {/* Form header */}
             <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.05em] text-[var(--fg-mute)]">

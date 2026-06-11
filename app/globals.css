@@ -52,32 +52,83 @@ body[data-theme="light"],
 }
 
 body[data-theme="dark"] {
-  --background:    #09090b;
-  --foreground:    #fafafa;
+  --background:    #06050e;
+  --foreground:    #f4f3ff;
   --muted:         #71717a;
-  --border:        rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.12);
-  --bg-elev:       #18181b;
-  --bg-elev-2:     #27272a;
-  --bg:            #09090b;
-  --fg:            #fafafa;
-  --fg-mute:       #52525b;
-  --fg-dim:        #a1a1aa;
+  --border:        rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.13);
+  --bg-elev:       rgba(255, 255, 255, 0.06);
+  --bg-elev-2:     rgba(255, 255, 255, 0.10);
+  --bg:            #06050e;
+  --fg:            #f4f3ff;
+  --fg-mute:       #6b6a7a;
+  --fg-dim:        #a09fb8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background:    #09090b;
-    --foreground:    #fafafa;
-    --border:        rgba(255, 255, 255, 0.06);
-    --border-strong: rgba(255, 255, 255, 0.12);
-    --bg-elev:       #18181b;
-    --bg-elev-2:     #27272a;
-    --bg:            #09090b;
-    --fg:            #fafafa;
-    --fg-mute:       #52525b;
-    --fg-dim:        #a1a1aa;
+    --background:    #06050e;
+    --foreground:    #f4f3ff;
+    --border:        rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.13);
+    --bg-elev:       rgba(255, 255, 255, 0.06);
+    --bg-elev-2:     rgba(255, 255, 255, 0.10);
+    --bg:            #06050e;
+    --fg:            #f4f3ff;
+    --fg-mute:       #6b6a7a;
+    --fg-dim:        #a09fb8;
   }
+}
+
+/* ── iOS 26 Liquid Glass utilities ─────────────────────────── */
+.glass {
+  backdrop-filter: blur(48px) saturate(1.8);
+  -webkit-backdrop-filter: blur(48px) saturate(1.8);
+  background: linear-gradient(150deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.05) 100%);
+  border: 1px solid rgba(255,255,255,0.13);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(255,255,255,0.04),
+    0 24px 64px rgba(0,0,0,0.38),
+    0 8px 20px rgba(0,0,0,0.22);
+}
+
+body[data-theme="light"] .glass {
+  background: rgba(255,255,255,0.72);
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.glass-input {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: inherit;
+}
+
+.glass-input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.glass-input:focus {
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(255,255,255,0.25);
+  outline: none;
+}
+
+body[data-theme="light"] .glass-input {
+  background: rgba(255,255,255,0.6);
+  border-color: rgba(0,0,0,0.10);
+}
+
+body[data-theme="light"] .glass-input::placeholder {
+  color: rgba(0,0,0,0.35);
+}
+
+body[data-theme="light"] .glass-input:focus {
+  background: rgba(255,255,255,0.85);
+  border-color: var(--accent);
 }
 
 /* ── Base ──────────────────────────────────────────────────── */
@@ -136,15 +187,38 @@ body {
   to   { opacity: 1; transform: translateX(0);     }
 }
 
+@keyframes loadFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
 @keyframes loadCharIn {
   0%   { opacity: 0;    transform: translateX(-24px) scale(0.94); }
   40%  { opacity: 0.4;  transform: translateX(-8px)  scale(0.97); }
   100% { opacity: 1;    transform: translateX(0)     scale(1);    }
 }
 
+@keyframes loadCharBlurIn {
+  0%   { opacity: 0;   filter: blur(14px); transform: translateY(10px) scale(0.92); }
+  55%  { opacity: 0.7; filter: blur(3px);  transform: translateY(2px)  scale(0.99); }
+  100% { opacity: 1;   filter: blur(0);   transform: translateY(0)    scale(1);    }
+}
+
 @keyframes loadLine {
   from { width: 0%;   }
   to   { width: 100%; }
+}
+
+@keyframes ambientDrift1 {
+  0%, 100% { transform: translate(0,    0)    scale(1);    }
+  33%       { transform: translate(3%,   5%)   scale(1.06); }
+  66%       { transform: translate(-2%,  3%)   scale(0.96); }
+}
+
+@keyframes ambientDrift2 {
+  0%, 100% { transform: translate(0,    0)    scale(1);    }
+  40%       { transform: translate(-4%, -3%)  scale(1.08); }
+  70%       { transform: translate(2%,  -5%)  scale(0.94); }
 }
 
 @keyframes dotPulse {
