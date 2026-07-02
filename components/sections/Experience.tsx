@@ -9,7 +9,7 @@ interface TimelineEntry {
 const TIMELINE: TimelineEntry[] = [
   {
     period: "2025 — Now",
-    role: "Full Stack Developer",
+    role: "Full Stack Engineer",
     org: "Cora Tech · Casablanca",
     bullets: [
       "Build and ship features across the full stack using React, Next.js, and TailwindCSS.",
@@ -20,7 +20,7 @@ const TIMELINE: TimelineEntry[] = [
   },
   {
     period: "2023 — 2025",
-    role: "Full Stack Developer",
+    role: "Full Stack Engineer",
     org: "TickTickTrader",
     bullets: [
       "Designed and maintained RESTful APIs and gRPC services, replacing REST for optimized data exchange between microservices.",
@@ -32,7 +32,7 @@ const TIMELINE: TimelineEntry[] = [
   },
   {
     period: "2022 — 2023",
-    role: "Full Stack Developer",
+    role: "Full Stack Engineer",
     org: "Freelance",
     bullets: [
       "Developed a music streaming UI — persistent player across all routes, infinite scroll, and album management.",
@@ -42,7 +42,7 @@ const TIMELINE: TimelineEntry[] = [
   },
   {
     period: "2021 — 2022",
-    role: "Full Stack Developer",
+    role: "Full Stack Engineer",
     org: "DevoTech · Agadir",
     bullets: [
       "Translated Figma designs into pixel-perfect React components with Tailwind and Styled Components.",
